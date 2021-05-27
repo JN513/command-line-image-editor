@@ -62,11 +62,11 @@ DIR_CHAMADA="${PWD}"
 if [ -e $BASHRC ] 
 then
     echo "tem bash"
-    sudo echo "alias edit='python $DIR_CHAMADA/main.py'" >> $BASHRC
+    sudo echo "alias edit='python3 $DIR_CHAMADA/main.py'" >> $BASHRC
 fi
 
 if [ -e $ZSHRC ] 
 then
     echo "tem zsh"
-    sudo echo "alias edit='python $DIR_CHAMADA/main.py'" >> $ZSHRC
+    sudo echo "alias edit='python3 $DIR_CHAMADA/main.py'" >> $ZSHRC
 fi

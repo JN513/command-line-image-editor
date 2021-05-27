@@ -1,16 +1,27 @@
 #!/bin/bash
 
 function update {
-    echo "[ INFO ] Atualizando repositorios ..."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo "[ INFO ] Atualizando repositorios ..."
 
-    sudo apt-get update
+        sudo apt-get update
 
-    echo "[ INFO ] Instalando python e pip"
+        echo "[ INFO ] Instalando python e pip"
 
-    sudo apt-get install python3
-    sudo apt-get install python3-pip
+        sudo apt-get install python3
+        sudo apt-get install python3-pip
+        sudo apt-get install unzip
 
-    echo "Instalando dependencias"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        echo "[ INFO ] Instalando python e pip"
+
+        brew install python3
+        brew install python3-pip
+        brew install unzip
+
+    fi
+
+    echo "[ INFO ] Instalando dependencias"
 }
 
 if [ $# -lt 1 ]
@@ -28,9 +39,10 @@ else
             ;;
     "-d") echo "[ INFO ] Realizando Download do Git-Hub"
             update
-            sudo apt-get install unzip
+
             wget https://github.com/JN513/command-line-image-editor/archive/main.zip 
-            unzip main.zip
+            unzip main.zip               
+            
             rm main.zip
             cd command-line-image-editor-main/
             pip install --no-cache -r requirements.txt
